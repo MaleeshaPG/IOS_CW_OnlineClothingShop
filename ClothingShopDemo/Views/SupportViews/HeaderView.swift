@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HeaderView: View {
-    
+    @StateObject var cartManager: CartManager
     var menuAction: ButtonAction
 //    var cartAction: ButtonAction
     
@@ -39,9 +39,9 @@ struct HeaderView: View {
 //                }
 //                CartButton(noOfProducts: 1)
                 NavigationLink {
-                    CartView()
+                    CartView(cartManager: cartManager)
                 }label: {
-                    CartButton(noOfProducts: 1)
+                    CartButton(noOfProducts: cartManager.products.count)
                 }
                 
                 .frame(width: 24, height: 36)

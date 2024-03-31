@@ -12,6 +12,8 @@ struct ItemView: View {
     @State var presentSideMenu = false
     @State var presentSideCart = false
     
+    @ObservedObject var cartManager: CartManager
+    
     var product: Product
     var body: some View {
         ZStack {
@@ -23,7 +25,7 @@ struct ItemView: View {
                         
                         VStack(alignment: .leading) {
                             ZStack(alignment: .bottomTrailing) {
-                                Image(product.image)
+                                Image(product.img_path)
                                     .resizable()
                                     .ignoresSafeArea(edges: .top)
                                     .frame(width: 400 ,height: 600)
@@ -104,7 +106,7 @@ struct ItemView: View {
             }
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
             .overlay(alignment: .top) {
-                HeaderView{
+                HeaderView(cartManager: cartManager){
                     presentSideMenu.toggle()
                 }
             }
@@ -127,5 +129,5 @@ struct ItemView: View {
 }
 
 #Preview {
-    ItemView(product: productList[0])
+    ItemView(cartManager: CartManager(), product: productList[0])
 }

@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ProductItemView: View {
+    @ObservedObject var cartManager: CartManager
     var product: Product
     
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack() {
-                Image(product.image)
+                Image(product.img_path)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 165, height: 200)
@@ -36,7 +37,7 @@ struct ProductItemView: View {
             }
             //remove this plus
             Button {
-                print("add to cart")
+                cartManager.products.append(product)
             }label: {
                 Image(systemName: "plus")
                     .bold()
@@ -51,5 +52,5 @@ struct ProductItemView: View {
 }
 
 #Preview {
-    ProductItemView(product: productList[0])
+    ProductItemView(cartManager: CartManager(), product: productList[0])
 }

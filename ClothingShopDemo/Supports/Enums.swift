@@ -7,14 +7,14 @@
 
 import Foundation
 
-enum Categories: String {
+enum Categories: String, Codable {
     case All = "All"
     case Tshrits = "Tshirts"
     case Joggers = "Joggers"
     case Sweaters = "Sweaters"
 }
 
-enum GenderCategory: String {
+enum GenderCategory: String, Codable {
     case UniSex = "All"
     case Male = "MEN"
     case Female = "WOMEN"

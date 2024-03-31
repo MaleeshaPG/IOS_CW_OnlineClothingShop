@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct ProductsList: View {
+    @StateObject var productManager = ProductViewModel()
+    @ObservedObject var cartManager: CartManager
+    @State var selectedID = 0
     @State var presentSideMenu = false
-    @State var presentSideCart = false
+//    @State var presentSideCart = false
     
     private let adaptiveColumns = [GridItem(.adaptive(minimum: 150))]
     
@@ -29,12 +32,17 @@ struct ProductsList: View {
                             .padding()
                             
                             ScrollView(.vertical) {
-                                NavigationLink(destination: ItemView(product: productList[0])) {
+//                                NavigationLink(destination: ItemView(product: productList[selectedID])) {
                                     VStack {
                                         ScrollView(.vertical) {
                                             LazyVGrid(columns: adaptiveColumns, spacing: 20) {
-                                                ForEach(productList, id: \.id) { product
-                                                    in  ProductItemView(product: product)
+                                                ForEach(productManager.products, id: \._id) { product
+                                                    in  /*ProductItemView(product: product)*/
+                                                    NavigationLink(destination: ItemView(cartManager: cartManager, product: product)) {
+                                                        ProductItemView(cartManager: cartManager, product: product)
+                                                        
+                                                    }
+                                                    
                                                 }
                                                
                                             }
@@ -42,7 +50,7 @@ struct ProductsList: View {
                                         .scrollIndicators(.hidden)
                                     }
                                     .padding([.leading, .trailing], 20)
-                                }
+//                                }
                                 
                             }
                             .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
@@ -52,7 +60,7 @@ struct ProductsList: View {
                     }
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
                     .overlay(alignment: .top) {
-                        HeaderView{
+                        HeaderView(cartManager: cartManager){
                             presentSideMenu.toggle()
                         }
                     }
@@ -76,5 +84,5 @@ struct ProductsList: View {
 }
 
 #Preview {
-    ProductsList()
+    ProductsList(cartManager: CartManager())
 }

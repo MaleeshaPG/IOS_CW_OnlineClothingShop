@@ -10,7 +10,8 @@ import SwiftUI
 struct HomeView: View {
     
     @State var presentSideMenu = false
-    @State var presentSideCart = false
+//    @State var presentSideCart = false
+    @State var cartManager = CartManager()
     
     private var categories = [Categories.All.rawValue, Categories.Tshrits.rawValue, Categories.Joggers.rawValue, Categories.Sweaters.rawValue]
     
@@ -33,7 +34,7 @@ struct HomeView: View {
                 }
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, maxHeight: .infinity)
                 .overlay(alignment: .top) {
-                    HeaderView{
+                    HeaderView(cartManager: cartManager){
                         presentSideMenu.toggle()
                     }
                 }
@@ -51,7 +52,7 @@ struct HomeView: View {
                     .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
                     .frame(height: 620)
                 
-                NavigationLink(destination: ProductsList()){
+                NavigationLink(destination: ProductsList(cartManager: cartManager)){
                     Text("Explore Collection")
                         .font(Font.custom("Tenor Sans", size: 25))
                         .foregroundColor(.white)
@@ -85,8 +86,8 @@ struct HomeView: View {
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
             
             HStack {
-                ProductItemView(product: productList[1])
-                ProductItemView(product: productList[2])
+                ProductItemView(cartManager: cartManager, product: productList[9])
+                ProductItemView(cartManager: cartManager, product: productList[11])
             }
             
             Button {

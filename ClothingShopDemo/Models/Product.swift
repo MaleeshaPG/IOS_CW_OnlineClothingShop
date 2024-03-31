@@ -6,29 +6,39 @@
 //
 
 import Foundation
-struct Product: Identifiable {
-    var id = UUID()
+struct Product: Codable {
+    var _id : String
     var name: String
-    var image: String
-    var price: Int
-    var category: Categories
-    var gender: GenderCategory
+    var img_path: String
+    var price: Double
+    var category: String
+    var gender: String
 }
 
-var productList = [Product(name: "Brown Sweater", image: "Sweater1", price: 300, category: .Sweaters, gender: .Female),
-                   Product(name: "Black Sweater", image: "Sweater2", price: 350, category: .Sweaters, gender: .Female),
-                   Product(name: "Pink Sweater", image: "Sweater3", price: 280, category: .Sweaters, gender: .Female),
-                   Product(name: "Green Sweater", image: "Sweater4", price: 350, category: .Sweaters, gender: .Female),
-                   Product(name: "Purple Sweater", image: "Sweater5", price: 400, category: .Sweaters, gender: .Male),
-                   Product(name: "Purple Sweater", image: "Sweater6", price: 380, category: .Sweaters, gender: .Male),
-                   Product(name: "Purple Sweater", image: "Sweater7", price: 380, category: .Sweaters, gender: .Male),
-                   Product(name: "Purple Sweater", image: "Sweater8", price: 400, category: .Sweaters, gender: .Male),
-                   Product(name: "White Casual", image: "Tshirt1", price: 280, category: .Tshrits, gender: .UniSex),
-                   Product(name: "Pink Casual", image: "Tshirt2", price: 300, category: .Tshrits, gender: .UniSex),
-                   Product(name: "Black Casual", image: "Tshirt3", price: 280, category: .Tshrits, gender: .UniSex),
-                   Product(name: "White Cross Casual", image: "Tshirt4", price: 280, category: .Tshrits, gender: .UniSex),
-                   Product(name: "Purple Jogger", image: "Jogger1", price: 400, category: .Joggers, gender: .UniSex),
-                   Product(name: "Grey Jogger", image: "Jogger2", price: 420, category: .Joggers, gender: .UniSex),
-                   Product(name: "Casual Jogger", image: "Jogger3", price: 400, category: .Joggers, gender: .UniSex),
-                   Product(name: "White Jogger", image: "Jogger4", price: 420, category: .Joggers, gender: .UniSex),
+enum CodingKeys: String, CodingKey {
+        case _id
+        case name
+        case image = "img_path"
+        case price
+        case category
+        case gender
+    }
+
+
+var productList = [Product(_id: "A", name: "Brown Sweater", img_path: "Sweater1", price: 300, category: "Sweaters", gender: "Female"),
+                   Product(_id: "B", name: "Black Sweater", img_path: "Sweater2", price: 350, category: "Sweaters", gender: "Female"),
+                   Product(_id: "C", name: "Pink Sweater", img_path: "Sweater3", price: 280, category: "Sweaters", gender: "Female"),
+                   Product(_id: "D", name: "Green Sweater", img_path: "Sweater4", price: 350, category: "Sweaters", gender: "Female"),
+                   Product(_id: "E", name: "Blue Sweater", img_path: "Sweater5", price: 400, category: "Sweaters", gender: "Male"),
+                   Product(_id: "F", name: "Classic Sweater", img_path: "Sweater6", price: 380, category: "Sweaters", gender: "Male"),
+                   Product(_id: "G", name: "Classic Blue Sweater", img_path: "Sweater7", price: 380, category: "Sweaters", gender: "Male"),
+                   Product(_id: "H", name: "Black Sweater", img_path: "Sweater8", price: 400, category: "Sweaters", gender: "Male"),
+                   Product(_id: "I", name: "White Casual", img_path: "Tshirt1", price: 280, category: "Tshirt", gender: "Unisex"),
+                   Product(_id: "J", name: "Pink Casual", img_path: "Tshirt2", price: 300, category: "Tshirt", gender: "Unisex"),
+                   Product(_id: "K", name: "Black Casual", img_path: "Tshirt3", price: 280, category: "Tshirt", gender: "Unisex"),
+                   Product(_id: "L", name: "White Cross Casual", img_path: "Tshirt4", price: 280, category: "Tshirt", gender: "Unisex"),
+                   Product(_id: "M", name: "Purple Jogger", img_path: "Jogger1", price: 400, category: "Joggers", gender: "Unisex"),
+                   Product(_id: "N", name: "Gray Jogger", img_path: "Jogger2", price: 420, category: "Joggers", gender: "Unisex"),
+                   Product(_id: "O", name: "Casual Jogger", img_path: "Jogger3", price: 400, category: "Joggers", gender: "Unisex"),
+                   Product(_id: "P", name: "White Jogger", img_path: "Jogger4", price: 420, category: "Joggers", gender: "Unisex"),
 ]
