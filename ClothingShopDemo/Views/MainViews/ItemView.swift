@@ -40,6 +40,9 @@ struct ItemView: View {
                                     .foregroundColor(.white)
                                     .background(.black)
                                     .cornerRadius(50)
+                                    .onTapGesture {
+                                        cartManager.addToCart(product: product)
+                                    }
                                 
                             }
 //                            VStack(alignment: .leading) {

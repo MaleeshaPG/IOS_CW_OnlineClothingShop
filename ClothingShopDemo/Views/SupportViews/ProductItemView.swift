@@ -37,7 +37,7 @@ struct ProductItemView: View {
             }
             //remove this plus
             Button {
-                cartManager.products.append(product)
+                cartManager.addToCart(product: product)
             }label: {
                 Image(systemName: "plus")
                     .bold()

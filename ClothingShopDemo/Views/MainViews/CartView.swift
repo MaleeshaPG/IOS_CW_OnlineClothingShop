@@ -37,7 +37,7 @@ struct CartView: View {
                     VStack(spacing: 10) {
                         
                         ForEach(cartManager.products, id: \._id) { product in
-                            CartItemView(product: product)
+                            CartItemView(product: product, cartManager: cartManager)
                         }
                         
 //                        Text("Total: $\(cartManager.total)")
@@ -86,7 +86,7 @@ struct CartView: View {
 
 struct CartItemView: View {
     let product: Product
-    
+    @ObservedObject var cartManager: CartManager
     var body: some View {
         HStack {
             Rectangle()
@@ -107,6 +107,12 @@ struct CartItemView: View {
                     .font(tenorSans(16))
             }
             Spacer()
+            
+            Image(systemName: "trash")
+                .onTapGesture {
+                    cartManager.removeFromCart(product: product)
+                }
+            
 
 //            Text(product.name)
 //            Spacer()

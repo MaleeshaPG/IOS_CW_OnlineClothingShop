@@ -10,6 +10,7 @@ import SwiftUI
 struct HeaderView: View {
     @StateObject var cartManager: CartManager
     var menuAction: ButtonAction
+    
 //    var cartAction: ButtonAction
     
     var body: some View {
@@ -47,12 +48,14 @@ struct HeaderView: View {
                 .frame(width: 24, height: 36)
                 .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .trailing)
             }
+            .padding(.horizontal)
             .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
             .frame(height: 56)
             .background(.white)
             .zIndex(1)
             .shadow(radius: 0.3)
         }
+//        .padding(.horizontal)
         
     }
 }

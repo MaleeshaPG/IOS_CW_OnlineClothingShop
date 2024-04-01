@@ -41,7 +41,7 @@ struct HomeView: View {
                 
                 SideMenu()
 //                SideCart()
-            }
+            }.navigationBarBackButtonHidden(true)
         }
     }
     @ViewBuilder private func HomePageImageView() -> some View {
